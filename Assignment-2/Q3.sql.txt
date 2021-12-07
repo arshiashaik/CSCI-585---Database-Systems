@@ -1,0 +1,9 @@
+DATABASE: livesql.oracle.com
+
+CREATE VIEW SICKEST_FLOOR  
+AS SELECT e.Employee_ID, e.Employee_Name, e.Employee_Floor_No   
+FROM Employee e 
+INNER JOIN HealthStatus hs  
+ON e.Employee_ID = hs.Employee_ID;
+
+SELECT MAX(Employee_Floor_No) FROM SICKEST_FLOOR;

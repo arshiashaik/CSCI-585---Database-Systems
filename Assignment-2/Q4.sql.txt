@@ -1,0 +1,22 @@
+Database: livesql.oracle.com
+
+SELECT COUNT(Test_ID) AS Number_of_Tests 
+FROM Test  
+WHERE Test_Date BETWEEN '21-Sep-2021' AND '22-Sep-2021';
+
+SELECT COUNT(Scan_ID) AS Number_of_Scans 
+FROM Scan 
+WHERE Scan_Date BETWEEN '21-Sep-2021' AND '23-Sep-2021';
+
+SELECT COUNT(Symptom_ID) AS Number_of_People_SelfReporting 
+FROM Symptom 
+WHERE Symptom_Reporting_Date BETWEEN '21-Sep-2021' AND '23-Sep-2021';
+
+SELECT COUNT(Test_Result) AS Number_of_Positive_Cases 
+FROM Test  
+WHERE Test_Result = 'Positive';
+
+
+
+
+
