@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OL</title>
+    <script src="https://openlayers.org/api/OpenLayers.js"></script>
+    <style>
+      #map {
+      width:400px;
+      height:400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // your JS code 
+      console.log("Hola, all!");
+      alert("MY 13 Locations");
+      
+      // my data is a label/ID for what we store, which is the object stored in variable d, 
+      // whose value is {"k1":[{"a":5, "b":-6}]}, which consists of a key called k1 
+      // with an array as its value: [{"a":5, "b":-6}]
+      var d = {"k1":[
+        {"a":34.02915895101439, "b":-118.28978130364372},
+        {"a":34.025165140660505, "b":-118.28877811331142},
+        {"a":34.02455057717112, "b":-118.28778641476693},
+        {"a":34.024347849238985, "b":-118.28790613270121},
+        {"a":34.0234812899713 , "b":-118.28649257120999},
+        {"a":34.02283915994765, "b":-118.28399209658883},
+        {"a":34.022291320060326, "b": -118.28303417463964},
+        {"a":34.02185378599355, "b":-118.28182255860257},
+        {"a":34.02038364208678, "b":-118.28261582191872},
+        {"a":34.01971600373234, "b":-118.28357121316706},
+        {"a":34.02053880814239, "b":-118.28533453255395},
+        {"a":34.02135613073302, "b":-118.28771079205417},
+        {"a":34.020957131901774, "b":-118.28898640360524}
+      ]};
+      localStorage.setItem("myData",JSON.stringify(d));
+      // you'd need to modify the above, to store all your points
+      
+      
+      //next [presumably after closing the browser, and reloading our html]
+      // we can fetch the stored data, just by supplying its key:
+      var dataStored = JSON.parse(localStorage.getItem("myData"));
+      // verify that we fetched our data correctly
+      console.log(dataStored); 
+      // we can iterate through our array [of points], like so:
+      var a = dataStored.k1; // a will contain our array
+     
+
+      
+      // here's how to plot points on a map, using OpenLayers:
+      // [this is code I mildly modified, from an existing source]
+      function initMap() {
+              map = new OpenLayers.Map('map');
+              basemap = new OpenLayers.Layer.OSM("Simple OSM Map");
+              map.addLayer(basemap);
+              markers = new OpenLayers.Layer.Markers("Markers");
+              map.addLayer(markers);
+      }// initMap()
+      
+      function addMarker(latitude, longitude) {
+              var lonLat = new OpenLayers.LonLat(longitude, latitude)
+                  .transform(
+                      new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                      map.getProjectionObject() // to Spherical Mercator Projection
+              );
+              var point = new OpenLayers.Marker(lonLat);
+              markers.addMarker(point);
+              map.setCenter(lonLat, 8); // second arg is zoom level
+              //console.log(latitude + ", " + longitude);
+      }// addMarker()
+    
+
+      initMap();
+      for(var indx in a) { 
+        addMarker(a[indx].a, a[indx].b); }
+      // load and setup map layers
+  
+      // here's how to plot just ONE [lat,long] on the map! 
+      // addMarker(34.02915895101439, -118.28978130364372); // somewhere in SoCal...
+      // addMarker(34.025165140660505, -118.28877811331142);
+      // addMarker(34.02455057717112, -118.28778641476693);
+      // addMarker(34.024347849238985, -118.28790613270121,);
+      // addMarker(34.0234812899713, -118.28649257120999);
+      // addMarker(34.02283915994765, -118.28399209658883);
+      // addMarker(34.022291320060326, -118.28303417463964,);
+      // addMarker(34.02185378599355, -118.28182255860257);
+      // addMarker(34.02038364208678, -118.28261582191872);
+      // addMarker(34.01971600373234, -118.28357121316706);
+      // addMarker(34.020253880814293, -118.28533453255395);
+      // addMarker(34.02135613073302, -118.28771079205417);
+      // addMarker(34.020957131901774, -118.28898640360524);
+      
+    </script>
+  </body>
+</html>
