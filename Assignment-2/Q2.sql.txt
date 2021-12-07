@@ -1,7 +1,0 @@
-DATABASE: livesql.oracle.com
-
-SELECT MAX(Symptom_ID) AS Most_Self_Reported_Symptom 
-FROM (SELECT Symptom_ID,count(Symptom_ID) 
-FROM Symptom 
-GROUP BY Symptom_ID 
-ORDER BY count(Symptom_Id) DESC);
