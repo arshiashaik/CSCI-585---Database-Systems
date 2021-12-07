@@ -1,0 +1,305 @@
+DATABASE: livesql.oracle.com
+
+#Employee:
+
+CREATE TABLE Employee    
+    (   
+    Employee_ID int NOT NULL,   
+    Employee_Name varchar(25) NOT NULL,   
+    Employee_Office_No int NOT NULL,   
+    Employee_Floor_No int NOT NULL,   
+    Employee_Phone_Number int NOT NULL,   
+    Employee_Email varchar(25) NULL,  
+    PRIMARY KEY(Employee_ID)  
+    );
+
+INSERT INTO Employee VALUES  
+(100, 'Arshia', 19, 1, 2135152012, 'arshia@usc.edu');
+INSERT INTO Employee VALUES  
+(101, 'Shreya', 19, 1, 2135152013, 'shreya@usc.edu');
+INSERT INTO Employee VALUES  
+(102, 'Yoshita', 19, 1, 2135152014, 'yoshu@usc.edu');
+INSERT INTO Employee VALUES  
+(103, 'Nikhila', 19, 1, 2135152015, 'nikhila@usc.edu');
+INSERT INTO Employee VALUES   
+(104, 'Simran', 12, 2, 21351512016, 'simran@usc.edu');
+INSERT INTO Employee VALUES    
+(105, 'Smaran', 12, 3, 21351512017, 'smaran@usc.edu');
+INSERT INTO Employee VALUES     
+(106, 'Maan', 17, 2, 21351512018, 'maan@usc.edu');
+INSERT INTO Employee VALUES     
+(107, 'Ian', 17, 4, 21351512019, 'ian@usc.edu');
+INSERT INTO Employee VALUES 
+(109, 'Kiran', 12, 4, 21351512021, 'kiran@usc.edu');
+INSERT INTO Employee VALUES 
+(110, 'Preeti', 18, 5, 21351512022, 'preeti@usc.edu');
+INSERT INTO Employee VALUES 
+(111, 'Khush', 18, 5, 21351512023, 'khush@usc.edu');
+INSERT INTO Employee VALUES 
+(112, 'Poorna', 14, 6, 21351512024, 'poorna@usc.edu');
+INSERT INTO Employee VALUES 
+(113, 'Sujala', 12, 2, 21351512025, 'sujala@usc.edu');
+INSERT INTO Employee VALUES 
+(114, 'Aamna', 11, 1, 21351512026, 'aamna@usc.edu');
+INSERT INTO Employee VALUES 
+(115, 'Damon', 11, 10, 21351512027, 'damon@usc.edu');
+INSERT INTO Employee VALUES 
+(116, 'Elena', 11, 9, 21351512028, 'elena@usc.edu');
+INSERT INTO Employee VALUES 
+(117, 'Stephan', 17, 7, 21351512029, 'stephan@usc.edu');
+INSERT INTO Employee VALUES 
+(118, 'Bonnie', 17, 7, 21351512030, 'bonnie@usc.edu');
+INSERT INTO Employee VALUES 
+(119, 'Caroline', 17, 5, 21351512031, 'caroline@usc.edu');
+INSERT INTO Employee VALUES 
+(120, 'Klaus', 17, 7, 21351512032, 'klaus@usc.edu');
+INSERT INTO Employee VALUES 
+(121, 'Rebeka', 17, 3, 21351512033, 'rebeka@usc.edu');
+INSERT INTO Employee VALUES 
+(122, 'Kylie', 17, 3, 21351512034, 'kylie@usc.edu');
+INSERT INTO Employee VALUES 
+(123, 'Jeremy', 17, 6, 21351512035, 'jeremy@usc.edu');
+INSERT INTO Employee VALUES 
+(124, 'Yemen', 17, 6, 21351512036, 'yemen@usc.edu');
+INSERT INTO Employee VALUES 
+(125, 'Elijah', 17, 3, 21351512037, 'elijah@usc.edu');
+INSERT INTO Employee VALUES 
+(126, 'Stephan', 17, 10, 21351512038, 'stephan@usc.edu');
+
+
+#Meeting:
+
+CREATE TABLE Meeting    
+    (     
+    Meeting_ID INT NOT NULL,     
+    Employee_ID INT NOT NULL,     
+    Meeting_Room_No INT NOT NULL,     
+    Meeting_Floor_No INT NOT NULL,     
+    Meeting_Date DATE NOT NULL,    
+    Meeting_Start_Time INT NOT NULL,    
+    PRIMARY KEY (Meeting_ID),    
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)    
+);
+
+INSERT INTO Meeting VALUES 
+(1, 101, 1, 10, DATE '2021-09-09', 9);
+
+INSERT INTO Meeting VALUES 
+(2, 110, 1, 10, DATE '2021-09-09', 9);
+
+INSERT INTO Meeting VALUES 
+(4, 117, 1, 10, DATE '2021-09-09', 9);
+
+INSERT INTO Meeting VALUES 
+(5, 119, 1, 10, DATE '2021-09-09', 9);
+
+INSERT INTO Meeting VALUES 
+(6, 126, 1, 10, DATE '2021-09-09', 9);
+
+INSERT INTO Meeting VALUES 
+(7, 124, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(8, 119, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(9, 103, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(10, 100, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(11, 104, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(12, 105, 2, 9, DATE '2021-09-06', 12);
+
+INSERT INTO Meeting VALUES 
+(13, 107, 3, 8, DATE '2021-09-10', 11);
+
+INSERT INTO Meeting VALUES 
+(14, 115, 3, 8, DATE '2021-09-10', 11);
+
+INSERT INTO Meeting VALUES 
+(15, 120, 3, 8, DATE '2021-09-10', 11);
+
+#Notification:
+
+CREATE TABLE Notification  
+    (    
+    Notification_ID int NOT NULL,    
+    Employee_ID int NOT NULL,    
+    Notification_Date DATE NOT NULL,   
+    Notification_Type Varchar(10) NOT NULL, 
+    PRIMARY KEY (Notification_ID),   
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)
+);
+
+INSERT INTO Notification VALUES 
+(1, 101, DATE '2021-09-23', 'mandatory');
+
+INSERT INTO Notification VALUES 
+(2, 119, DATE '2021-09-23', 'mandatory');
+
+INSERT INTO Notification VALUES 
+(3, 105, DATE '2021-09-23', 'optional');
+
+INSERT INTO Notification VALUES 
+(4, 102, DATE '2021-09-23', 'optional');
+
+INSERT INTO Notification VALUES 
+(5, 111, DATE '2021-09-23', 'mandatory');
+
+INSERT INTO Notification VALUES 
+(6, 112, DATE '2021-09-23', 'mandatory');
+
+INSERT INTO Notification VALUES 
+(7, 113, DATE '2021-09-23', 'mandatory');
+
+
+
+#Symptom:
+
+CREATE TABLE Symptom 
+    (    
+    Row_ID INT NOT NULL,    
+    Employee_ID INT NOT NULL,    
+    Symptom_Reporting_Date DATE NOT NULL,   
+    Symptom_ID INT NOT NULL, 
+    PRIMARY KEY (Row_ID),   
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)   
+);
+
+INSERT INTO Symptom VALUES 
+(1, 119, DATE '2021-09-20', 1);
+
+INSERT INTO Symptom VALUES 
+(2, 120, DATE '2021-09-20', 5);
+
+INSERT INTO Symptom VALUES 
+(3, 105, DATE '2021-09-20', 5);
+
+INSERT INTO Symptom VALUES 
+(4, 111, DATE '2021-09-20', 4);
+
+INSERT INTO Symptom VALUES 
+(5, 112, DATE '2021-09-21', 4);
+
+INSERT INTO Symptom VALUES 
+(6, 113, DATE '2021-09-21', 4);
+
+
+#Scan:
+
+CREATE TABLE Scan   
+    (    
+    Scan_ID INT NOT NULL,    
+    Employee_ID INT NOT NULL,    
+    Scan_Date DATE NOT NULL,   
+    Scan_Time INT NOT NULL,   
+    Temperature INT NOT NULL,  
+    PRIMARY KEY (Scan_ID),   
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)   
+);
+
+INSERT INTO Scan VALUES 
+(1, 119, DATE '2021-09-22', 10, 38);
+
+INSERT INTO Scan VALUES 
+(2, 120, DATE '2021-09-22', 10, 39);
+
+INSERT INTO Scan VALUES 
+(3, 105, DATE '2021-09-22', 10, 37);
+
+INSERT INTO Scan VALUES 
+(4, 113, DATE '2021-09-22', 10, 37);
+
+INSERT INTO Scan VALUES 
+(5, 101, DATE '2021-09-22', 10, 37);
+
+INSERT INTO Scan VALUES 
+(6, 111, DATE '2021-09-22', 10, 37);
+
+
+#Test:
+
+
+CREATE TABLE Test    
+    (     
+    Test_ID INT NOT NULL,     
+    Employee_ID INT NOT NULL,    
+    Test_Location VARCHAR(20) NOT NULL,  
+    Test_Date DATE NOT NULL,    
+    Test_Time INT NOT NULL,    
+    Test_Result VARCHAR(20) NOT NULL,   
+    PRIMARY KEY (Test_ID),    
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)    
+);
+
+INSERT INTO Test VALUES  
+(1, 119, 'Hospital', DATE '2021-09-22', 10,'Positive');
+
+INSERT INTO Test VALUES  
+(2, 120, 'Hospital', DATE '2021-09-22', 11,'Negative');
+
+INSERT INTO Test VALUES  
+(3, 101, 'Clinic', DATE '2021-09-22', 8,'Negative');
+
+INSERT INTO Test VALUES  
+(4, 113, 'Company', DATE '2021-09-22', 8,'Negative');
+
+INSERT INTO Test VALUES  
+(5, 105, 'Company', DATE '2021-09-22', 8,'Positive');
+
+INSERT INTO Test VALUES  
+(6, 111, 'Company', DATE '2021-09-22', 8,'Positive');
+
+INSERT INTO Test VALUES 
+(7, 112, 'Company', DATE '2021-09-22', 9, 'Negative');
+
+
+#Case:
+
+CREATE TABLE Case 
+    (    
+    Case_ID INT NOT NULL,    
+    Employee_ID INT NOT NULL, 
+    Case_Date DATE NOT NULL,   
+    Case_Resolution VARCHAR(20) NOT NULL,  
+    PRIMARY KEY (Case_ID),   
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)   
+);
+
+INSERT INTO Case VALUES 
+(1, 105, DATE '2021-09-28', 'Back-to-work');
+
+INSERT INTO Case VALUES 
+(2, 111, DATE '2021-09-28', 'Back-to-work');
+
+INSERT INTO Case VALUES 
+(3, 119, DATE '2021-09-28', 'Back-to-work');
+
+
+
+#HealthStatus:
+
+CREATE TABLE HealthStatus 
+    (    
+    Row_ID INT NOT NULL,    
+    Employee_ID INT NOT NULL, 
+    HealthStatus_Date DATE NOT NULL,   
+    Status VARCHAR(20) NOT NULL,  
+    PRIMARY KEY (Row_ID),   
+    FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID)   
+);
+
+INSERT INTO HealthStatus VALUES 
+(1, 111, DATE '2021-09-24', 'Sick');
+
+INSERT INTO HealthStatus VALUES 
+(2, 105, DATE '2021-09-24', 'Sick');
+
+INSERT INTO HealthStatus VALUES 
+(3, 119, DATE '2021-09-24', 'Sick');
+
+
